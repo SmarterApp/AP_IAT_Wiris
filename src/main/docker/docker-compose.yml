@@ -1,0 +1,4 @@
+version:  '2.1'
+services:
+  pluginwiris_engine:
+    image: fwsbac/ap-wiris-engine:@version@
