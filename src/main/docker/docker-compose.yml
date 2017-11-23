@@ -1,4 +1,10 @@
 version:  '2.1'
 services:
   pluginwiris_engine:
+    container_name: ap-wiris-service
     image: fwsbac/ap-wiris-engine:@version@
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+

@@ -3,10 +3,14 @@
 ################
 
 # tomcat 8 based off of base tomcat image
-FROM tomcat:8.5.23-jre8-alpine
+FROM tomcat:jre8-alpine
+
+WORKDIR $CATALINA_HOME
 
 #Add the WAR file
-COPY pluginwiris_engine.war $CATALINA_HOME/webapps/pluginwiris_engine.war
+COPY pluginwiris_engine.war ./webapps/pluginwiris_engine.war
+
+RUN chmod +r ./webapps/pluginwiris_engine.war
 
 EXPOSE 8080
 

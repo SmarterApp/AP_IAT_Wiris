@@ -102,17 +102,18 @@ docker {
 task dockerCopyFiles(type: Copy) {
     dependsOn clean
 
+    // files to filter
     from('src/main/docker/') {
+        exclude '*.war'
+
         filter(ReplaceTokens, tokens: [USER_HOME:           System.env.HOME,
                                        version:             project.version,
                                        dockerTagBase:       project.dockerTagBase])
     }
 
-    from("build/libs/${jar.archiveName}") {
-        // drop version from artifact name
-        rename { String fileName ->
-            fileName.replace("-${project.version}", "")
-        }
+    // files that cannot be filtered
+    from("src/main/docker/") {
+        include '*.war'
     }
 
     into 'build/docker'
